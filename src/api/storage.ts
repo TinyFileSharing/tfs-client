@@ -2,26 +2,27 @@ import axios from 'axios'
 
 const baseUrl = 'https://testing.tinyfilesharing.com'
 
-const fetchWithToken = async (url: string, token: string) => {
-   return await axios.get(baseUrl + url, {
+async function fetchWithToken<T>(url: string, token: string) {
+   return await axios.get<T>(baseUrl + url, {
       headers: { Authorization: `Bearer ${token}` },
    })
 }
 
-export const fetchRecords = async (token: string) => {
+export const fetchDetails = async (token: string): Promise<StorageDetails | undefined> => {
    try {
-      const res = await fetchWithToken('/api/storage/files/list?offset=0&count=100', token)
+      const res = await fetchWithToken<StorageDetails>('/api/storage/details', token)
       return res.data
-   } catch (e) {
-      console.log(e)
+   } catch (error) {
+      console.log('Error fetching storage details', error)
    }
 }
 
-export const fetchDetails = async (token: string) => {
+export const fetchRecords = async (token: string): Promise<PaginatedResults<FileRecord> | undefined> => {
    try {
-      const res = await fetchWithToken('/api/storage/details', token)
+      // TODO - Add pagination query params
+      const res = await fetchWithToken<PaginatedResults<FileRecord>>('/api/storage/files/list', token)
       return res.data
-   } catch (e) {
-      console.log(e)
+   } catch (error) {
+      console.log('Error fetching file records', error)
    }
 }

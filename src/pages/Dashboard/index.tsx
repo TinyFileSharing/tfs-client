@@ -1,28 +1,24 @@
 import './styles.css'
-import { useAuth0 } from '@auth0/auth0-react'
-import { useEffect } from 'react'
 import { LogoutButton } from '../../components/LogoutButton'
 import { LoginButton } from '../../components/LoginButton'
 import { Authenticated } from '../../components/Authenticated'
 import { Unauthenticated } from '../../components/Unauthenticated'
+import { useStorage } from '../../hooks/use-storage'
 
 export const Dashboard = () => {
-   const { getAccessTokenSilently, isAuthenticated } = useAuth0()
-
-   useEffect(() => {
-      if (isAuthenticated) {
-         getAccessTokenSilently().then(console.log).catch(console.log)
-      }
-   }, [getAccessTokenSilently, isAuthenticated])
+   const { storageDetails, fileRecords } = useStorage()
 
    return (
       <div className='container'>
-         <Authenticated>
-            <LogoutButton />
-         </Authenticated>
          <Unauthenticated>
             <LoginButton />
          </Unauthenticated>
+         <Authenticated>
+            <LogoutButton />
+
+            <pre>{JSON.stringify(storageDetails, null, 2)}</pre>
+            <pre>{JSON.stringify(fileRecords, null, 2)}</pre>
+         </Authenticated>
       </div>
    )
 }
