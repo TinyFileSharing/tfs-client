@@ -1,5 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useEffect, useState } from 'react'
+import fileDownload from 'js-file-download'
+import axios from 'axios'
 import {
    deleteRecordById,
    fetchDetails,
@@ -7,8 +9,6 @@ import {
    fetchPresignedPostURL,
    fetchRecords,
 } from '../api/storage'
-import fileDownload from 'js-file-download'
-import axios from 'axios'
 
 export const useStorage = () => {
    const { getAccessTokenSilently, isAuthenticated } = useAuth0()
