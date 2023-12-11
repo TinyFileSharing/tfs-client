@@ -1,0 +1,21 @@
+.progress-bar {
+   width: 220px;
+   display: flex;
+   flex-direction: row;
+   gap: 5px;
+   margin: 0;
+}
+
+.line {
+   margin: 0;
+   height: 4px;
+   border-radius: 2px;
+}
+
+.complete {
+   background-color: var(--accent-color);
+}
+
+.incomplete {
+   background-color: #dadbde;
+}

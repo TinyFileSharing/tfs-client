@@ -1,0 +1,20 @@
+.tier-badge {
+   width: fit-content;
+   height: fit-content;
+   font-family: 'Lato', sans-serif;
+   font-size: 12px;
+   font-weight: 700;
+   font-style: italic;
+   color: white;
+   border-radius: 6px;
+}
+
+.pro {
+   background-color: var(--cta);
+   padding: 1.5px 6px 3px 6px;
+}
+
+.freemium {
+   background-color: #c9c9c9;
+   padding: 3px 7px 3px 6px;
+}

@@ -1,2 +1,10 @@
-.container {
+.dashboard {
+   width: 500px;
+   margin: 140px auto;
+}
+
+.card-list {
+   display: flex;
+   flex-direction: column;
+   gap: 16px;
 }

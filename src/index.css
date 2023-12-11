@@ -1,14 +1,13 @@
 :root {
    --background-color: #f8f9fd;
-   --card-color: #ffffff;
+   --card-background-color: #ffffff;
+   --cta: #e3007a;
+   --accent-color: #515ae7;
    --border-radius: 20px;
 }
 
 body {
-   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
-      'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-   -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale;
+   font-family: 'Roboto', sans-serif;
    background-color: var(--background-color);
    margin: 0;
 }
