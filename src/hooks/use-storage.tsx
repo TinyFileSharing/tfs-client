@@ -48,11 +48,13 @@ export const useStorage = () => {
       // TODO - implement download
    }
 
-   const uploadFile = async (filePathIThink: any) => {
+   const uploadFile = async (file: File) => {
       if (!token) {
          throw Error('Cannot upload file. Client is not authenticated!')
       }
       const presignedURL = await fetchPresignedPostURL(token)
+
+      console.log(file)
 
       console.log(presignedURL)
 

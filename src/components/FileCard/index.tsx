@@ -1,6 +1,6 @@
 import './styles.css'
 import { useStorage } from '../../hooks/use-storage'
-import { Card } from '../../components/Card'
+import { Card } from '../Card'
 
 interface FileCardProps {
    file: FileRecord
