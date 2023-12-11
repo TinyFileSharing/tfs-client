@@ -7,7 +7,7 @@ interface FileCardProps {
 }
 
 export const FileCard = ({ file }: FileCardProps) => {
-   const { downloadFile, deleteFile } = useStorage()
+   const { downloadFile, deleteFile, shareFile } = useStorage()
 
    return (
       <Card>
@@ -15,6 +15,7 @@ export const FileCard = ({ file }: FileCardProps) => {
          <div className='file-size'>{file.size}</div>
          <div className='file-creation'>{file.createdAt.toString()}</div>
          <div className='file-expiration'>{file.expirationAt.toString()}</div>
+         <input type='button' value='Share' onClick={() => shareFile(file.id)} />
          <input type='button' value='Download' onClick={() => downloadFile(file.id)} />
          <input type='button' value='Delete' onClick={() => deleteFile(file.id)} />
       </Card>

@@ -26,3 +26,17 @@ interface StorageDetails {
    maxUploadSize: number
    maxFileLifespan: string
 }
+
+interface PresignedPostURL {
+   url: string
+   fields: Record<string, string>
+   maxUploadSize: number
+   expirationDate: string
+   issueDate: string
+}
+
+interface PresignedGetURL {
+   url: string
+   expirationDate: string
+   issueDate: string
+}

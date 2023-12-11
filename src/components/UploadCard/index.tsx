@@ -7,10 +7,15 @@ export const UploadCard = () => {
    const { storageDetails, uploadFile } = useStorage()
    const [selectedFile, setSelectedFile] = useState<File>()
 
+   const maxUploadSizeMB = storageDetails?.maxUploadSize! * 1024 * 1024
+
    const handleSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files && event.target.files[0]
-      if (file) {
+      if (file && file.size <= maxUploadSizeMB) {
          setSelectedFile(file)
+      } else {
+         setSelectedFile(undefined)
+         alert('File size exceeds the allowed limit!')
       }
    }
 

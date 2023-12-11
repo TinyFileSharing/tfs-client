@@ -1,4 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
+import { useEffect, useState } from 'react'
 import {
    deleteRecordById,
    fetchDetails,
@@ -6,7 +7,8 @@ import {
    fetchPresignedPostURL,
    fetchRecords,
 } from '../api/storage'
-import { useEffect, useState } from 'react'
+import fileDownload from 'js-file-download'
+import axios from 'axios'
 
 export const useStorage = () => {
    const { getAccessTokenSilently, isAuthenticated } = useAuth0()
@@ -18,7 +20,7 @@ export const useStorage = () => {
       if (isAuthenticated) {
          getAccessTokenSilently().then(handleAuthentication).catch(console.log)
       }
-   }, [isAuthenticated])
+   }, [getAccessTokenSilently, isAuthenticated])
 
    const handleAuthentication = async (token: string) => {
       const paginatedRecords = await fetchRecords(token)
@@ -30,22 +32,20 @@ export const useStorage = () => {
       setToken(token)
    }
 
-   const deleteFile = async (id: string) => {
+   const deleteFile = async (fileId: string) => {
       if (!token) {
          throw Error('Cannot delete file. Client is not authenticated!')
       }
-      await deleteRecordById(token, id)
+      await deleteRecordById(token, fileId)
    }
 
-   const downloadFile = async (id: string) => {
+   const downloadFile = async (fileId: string) => {
       if (!token) {
          throw Error('Cannot download file. Client is not authenticated!')
       }
-      const presignedURL = await fetchPresignedGetURL(token, id)
-
-      console.log(presignedURL)
-
-      // TODO - implement download
+      const presignedURL = await fetchPresignedGetURL(token, fileId)
+      const response = await axios.get<Blob>(presignedURL.url, { responseType: 'blob' })
+      fileDownload(response.data, 'malou.mp3')
    }
 
    const uploadFile = async (file: File) => {
@@ -58,8 +58,22 @@ export const useStorage = () => {
 
       console.log(presignedURL)
 
-      // TODO - implement upload
+      const formData = new FormData()
+      Object.entries(presignedURL.fields).forEach(([key, value]) => formData.append(key, value))
+
+      formData.delete('X-Amz-Meta-Record-Name')
+      formData.append('X-Amz-Meta-Record-Name', file.name)
+      formData.delete('X-Amz-Meta-Record-Type')
+      formData.append('X-Amz-Meta-Record-Type', file.type)
+      formData.delete('file')
+      formData.append('file', file)
+
+      await axios.post(presignedURL.url, formData).catch(console.log)
    }
 
-   return { storageDetails, fileRecords, downloadFile, uploadFile, deleteFile }
+   const shareFile = (fileId: string) => {
+      // TODO - implement sharing
+   }
+
+   return { storageDetails, fileRecords, downloadFile, uploadFile, deleteFile, shareFile }
 }
