@@ -14,6 +14,7 @@ interface StorageContextProps {
    isLoading: boolean
    storageDetails: Partial<StorageDetails>
    fileRecords: FileRecord[]
+   loadNextRecords: () => Promise<void>
    deleteFile: (fileId: string) => Promise<void>
    downloadFile: (fileId: string) => Promise<void>
    uploadFile: (file: File) => Promise<void>
@@ -36,6 +37,7 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
    const [token, setToken] = useState<string>()
    const [storageDetails, setStorageDetails] = useState<Partial<StorageDetails>>({})
    const [fileRecords, setFileRecords] = useState<FileRecord[]>([])
+   const [nextPageIndex, setNextPageIndex] = useState(0)
 
    useEffect(() => {
       if (isAuthenticated) {
@@ -47,10 +49,11 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
    }, [getAccessTokenSilently, isAuthenticated])
 
    const handleAuthentication = async (token: string) => {
-      const paginatedRecords = await fetchRecords(token)
+      const paginatedRecords = await fetchRecords(token, nextPageIndex)
       setFileRecords(paginatedRecords?.results ?? [])
       const details = await fetchDetails(token)
       setStorageDetails(details!)
+      setNextPageIndex(prev => prev + 1)
       setToken(token)
    }
 
@@ -76,7 +79,7 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
       if (!token) {
          throw Error('Cannot upload file. Client is not authenticated!')
       }
-      
+
       const presignedURL = await fetchPresignedPostURL(token)
 
       const formData = new FormData()
@@ -102,6 +105,15 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
       setFileRecords(prev => [...prev, dummyRecord])
    }
 
+   const loadNextRecords = async () => {
+      if (!token) {
+         throw Error('Cannot load next file records. Client is not authenticated!')
+      }
+      const paginatedRecords = await fetchRecords(token, nextPageIndex)
+      setFileRecords(prev => [...prev, ...paginatedRecords?.results!])
+      setNextPageIndex(prev => prev + 1)
+   }
+
    const shareFile = async (fileId: string) => {
       // TODO - implement sharing
    }
@@ -110,6 +122,7 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
       isLoading,
       storageDetails,
       fileRecords,
+      loadNextRecords,
       downloadFile,
       uploadFile,
       deleteFile,

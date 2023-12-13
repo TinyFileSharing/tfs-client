@@ -9,7 +9,7 @@ import { FileCard } from '../../components/FileCard'
 import { UploadCard } from '../../components/UploadCard'
 
 export const Dashboard = () => {
-   const { isLoading, fileRecords } = useStorage()
+   const { isLoading, fileRecords, loadNextRecords } = useStorage()
 
    return (
       <div className='dashboard'>
@@ -28,6 +28,8 @@ export const Dashboard = () => {
                   {fileRecords.map(file => (
                      <FileCard key={file.id} file={file} />
                   ))}
+
+                  <input type='button' value='Load next' onClick={loadNextRecords} />
 
                   <Card>Footer</Card>
                </div>
