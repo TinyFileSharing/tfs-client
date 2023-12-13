@@ -76,12 +76,13 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
       if (!token) {
          throw Error('Cannot upload file. Client is not authenticated!')
       }
+      
       const presignedURL = await fetchPresignedPostURL(token)
 
       const formData = new FormData()
-
-      Object.entries(presignedURL.fields).forEach(([key, value]) => formData.append(key, value))
-
+      Object.entries(presignedURL.fields).forEach(([key, value]) => {
+         formData.append(key, value)
+      })
       formData.delete('X-Amz-Meta-Record-Name')
       formData.append('X-Amz-Meta-Record-Name', file.name)
       formData.delete('X-Amz-Meta-Record-Type')
@@ -91,14 +92,14 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
 
       await axios.post(presignedURL.url, formData).catch(console.log)
 
-      const candidateRecord: FileRecord = {
+      const dummyRecord: FileRecord = {
          ...presignedURL.dummyRecord,
          name: file.name,
          type: file.type,
          size: file.size,
       }
 
-      setFileRecords(prev => [...prev, candidateRecord])
+      setFileRecords(prev => [...prev, dummyRecord])
    }
 
    const shareFile = async (fileId: string) => {
