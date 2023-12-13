@@ -31,10 +31,7 @@ export const fetchRecords = async (
    offset = 0,
    count = 25,
 ): Promise<PaginatedResults<FileRecord> | undefined> => {
-   return await getWithToken<PaginatedResults<FileRecord>>(
-      `/files/list?offset=${offset}&count=${count}`,
-      token,
-   )
+   return await getWithToken<PaginatedResults<FileRecord>>(`/files/list?offset=${offset}&count=${count}`, token)
 }
 
 export const deleteRecordById = async (token: string, fileId: string): Promise<void> => {
