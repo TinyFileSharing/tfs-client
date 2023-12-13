@@ -2,6 +2,7 @@ import './index.css'
 import { createRoot } from 'react-dom/client'
 import { Auth0Provider } from '@auth0/auth0-react'
 import { Dashboard } from './pages/Dashboard'
+import { StorageProvider } from './contexts/storage-provider'
 
 const root = createRoot(document.getElementById('root') as HTMLElement)
 root.render(
@@ -14,6 +15,8 @@ root.render(
          scope: 'openid profile email',
       }}
    >
-      <Dashboard />
+      <StorageProvider>
+         <Dashboard />
+      </StorageProvider>
    </Auth0Provider>,
 )

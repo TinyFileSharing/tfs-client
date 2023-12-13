@@ -2,7 +2,7 @@ import './styles.css'
 import { LoginButton } from '../../components/LoginButton'
 import { Authenticated } from '../../components/Authenticated'
 import { Unauthenticated } from '../../components/Unauthenticated'
-import { useStorage } from '../../hooks/use-storage'
+import { useStorage } from '../../contexts/storage-provider'
 import { Card } from '../../components/Card'
 import { HeaderCard } from '../../components/HeaderCard'
 import { FileCard } from '../../components/FileCard'
@@ -24,7 +24,7 @@ export const Dashboard = () => {
                <HeaderCard />
                <UploadCard />
 
-               {fileRecords?.map(file => (
+               {fileRecords.map(file => (
                   <FileCard key={file.id} file={file} />
                ))}
 

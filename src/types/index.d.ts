@@ -29,6 +29,7 @@ interface StorageDetails {
 
 interface PresignedPostURL {
    url: string
+   dummyRecord: FileRecord
    fields: Record<string, string>
    maxUploadSize: number
    expirationDate: string

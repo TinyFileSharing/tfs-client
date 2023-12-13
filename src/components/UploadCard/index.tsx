@@ -1,5 +1,5 @@
 import './styles.css'
-import { useStorage } from '../../hooks/use-storage'
+import { useStorage } from '../../contexts/storage-provider'
 import { Card } from '../Card'
 import { useState } from 'react'
 
