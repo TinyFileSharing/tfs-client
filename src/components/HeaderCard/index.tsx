@@ -8,9 +8,9 @@ import { TierBadge } from '../../components/TierBadge'
 
 export const HeaderCard = () => {
    const { user } = useAuth0()
-   const { isLoading, storageDetails } = useStorage()
+   const { storageDetails } = useStorage()
 
-   return !isLoading ? (
+   return (
       <Card>
          {user?.name}
          <LogoutButton />
@@ -23,7 +23,5 @@ export const HeaderCard = () => {
             <TierBadge label={storageDetails.tierLabel!} />
          </div>
       </Card>
-   ) : (
-      <div>Loading...</div>
    )
 }

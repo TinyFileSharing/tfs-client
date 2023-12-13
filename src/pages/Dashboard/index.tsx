@@ -9,7 +9,7 @@ import { FileCard } from '../../components/FileCard'
 import { UploadCard } from '../../components/UploadCard'
 
 export const Dashboard = () => {
-   const { fileRecords } = useStorage()
+   const { isLoading, fileRecords } = useStorage()
 
    return (
       <div className='dashboard'>
@@ -20,16 +20,20 @@ export const Dashboard = () => {
          </Unauthenticated>
 
          <Authenticated>
-            <div className='card-list'>
-               <HeaderCard />
-               <UploadCard />
+            {!isLoading ? (
+               <div className='card-list'>
+                  <HeaderCard />
+                  <UploadCard />
 
-               {fileRecords.map(file => (
-                  <FileCard key={file.id} file={file} />
-               ))}
+                  {fileRecords.map(file => (
+                     <FileCard key={file.id} file={file} />
+                  ))}
 
-               <Card>Footer</Card>
-            </div>
+                  <Card>Footer</Card>
+               </div>
+            ) : (
+               <Card>Loading...</Card>
+            )}
          </Authenticated>
       </div>
    )
