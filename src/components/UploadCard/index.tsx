@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 export const UploadCard = () => {
    const { storageDetails, uploadFile } = useStorage()
-   const [selectedFile, setSelectedFile] = useState<File>()
+   const [selectedFile, setSelectedFile] = useState<File | undefined>()
 
    const maxUploadSizeMB = storageDetails?.maxUploadSize! * 1024 * 1024
 
@@ -24,6 +24,7 @@ export const UploadCard = () => {
          await uploadFile(selectedFile)
             .then(() => console.log('File uploaded successfully!'))
             .catch(error => console.error('Error uploading file:', error))
+         setSelectedFile(undefined)
       }
    }
 
