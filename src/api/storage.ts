@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = process.env.REACT_APP_BASE_URL || 'https://testing.tinyfilesharing.com/api/storage'
+const baseUrl = process.env.REACT_APP_BASE_URL || 'https://t-api.tinyfilesharing.com/api/storage'
 
 async function getWithToken<T>(url: string, token: string) {
    const response = await axios.get<T>(baseUrl + url, {
