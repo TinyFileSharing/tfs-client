@@ -15,3 +15,16 @@ body {
 * {
    box-sizing: border-box;
 }
+
+main {
+   width: 470px;
+   margin: 140px auto;
+   padding: 16px;
+}
+
+@media (max-width: 500px) {
+   main {
+      width: 100%;
+      margin: auto;
+   }
+}

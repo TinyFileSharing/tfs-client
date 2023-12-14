@@ -16,7 +16,7 @@ export const Dashboard = () => {
    console.log(isAuthLoading)
 
    return (
-      <div className='dashboard'>
+      <main>
          {!isAuthLoading ? (
             <>
                <Unauthenticated>
@@ -47,6 +47,6 @@ export const Dashboard = () => {
          ) : (
             <Card>Signing in...</Card>
          )}
-      </div>
+      </main>
    )
 }
