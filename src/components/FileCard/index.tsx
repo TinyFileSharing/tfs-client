@@ -7,7 +7,6 @@ import { toReadableTime } from '../../utils/time'
 import DownloadIcon from '@mui/icons-material/Download'
 import IosShareIcon from '@mui/icons-material/IosShare'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
-import { filenameToSvgIcon } from '../../utils/icons'
 
 interface FileCardProps {
    file: FileRecord
@@ -16,15 +15,10 @@ interface FileCardProps {
 export const FileCard = ({ file }: FileCardProps) => {
    const { downloadFile, deleteFile, shareFile } = useStorage()
 
-   const icon = filenameToSvgIcon(file.name)
-
    return (
       <Card className='file-card'>
          <div className='row'>
-            <div className='filename'>
-               <img src={icon} />
-               <div className='bold'>{shortenString(file.name, 20, 'end')}</div>
-            </div>
+            <div className='bold'>{shortenString(file.name, 20, 'end')}</div>
             <div className='file-btns'>
                <div className='btn primary' onClick={() => downloadFile(file.id)}>
                   <DownloadIcon />
