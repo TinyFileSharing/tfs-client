@@ -1,0 +1,39 @@
+.header-card {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   justify-content: space-between;
+   width: 100%;
+   user-select: none;
+}
+
+.header-card > *:nth-child(1 + n) {
+   grid-column: 2;
+}
+
+.storage-details {
+   white-space: nowrap;
+}
+
+.storage-file-count {
+   display: flex;
+   align-items: center;
+   flex-wrap: nowrap;
+   gap: 8px;
+}
+
+.header-name-group {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+}
+
+.header-storage-group {
+   display: flex;
+   flex-direction: column;
+   align-items: end;
+   gap: 8px;
+}
+
+.storage-tier {
+   margin-top: 16px;
+}

@@ -1,0 +1,46 @@
+.file-card {
+   display: flex;
+   gap: 12px;
+   flex-direction: column;
+   padding: 30px;
+}
+
+.row {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+.file-btns {
+   display: flex;
+   flex-direction: row-reverse;
+   gap: 8px;
+}
+
+.file-btns .btn {
+   opacity: 0;
+   transition: 0.2s;
+}
+
+.file-card:hover .btn {
+   opacity: 0.4;
+}
+
+.file-btns .primary {
+   opacity: 1;
+}
+
+.file-card:hover .primary {
+   opacity: 1;
+}
+
+.file-btns .btn {
+   display: flex;
+   align-self: center;
+   cursor: pointer;
+   transition: 0.2s;
+}
+
+.file-btns .btn:hover {
+   opacity: 1;
+}
