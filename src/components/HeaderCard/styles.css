@@ -3,6 +3,7 @@
    grid-template-columns: 1fr 1fr;
    justify-content: space-between;
    width: 100%;
+   user-select: none;
 }
 
 .header-card > *:nth-child(1 + n) {

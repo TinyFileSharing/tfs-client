@@ -63,3 +63,20 @@ input {
    font-weight: 400;
    opacity: 0.5;
 }
+
+.cta {
+   color: var(--accent-color);
+   font-weight: 600;
+}
+
+.overlay {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: black;
+   opacity: 0.5;
+   z-index: -1;
+   cursor: default;
+}

@@ -1,14 +1,11 @@
 import './styles.css'
-import { CSSProperties, PropsWithChildren } from 'react'
+import { CSSProperties, HTMLAttributes, PropsWithChildren } from 'react'
 
-interface CardProps extends PropsWithChildren {
-   className?: string
-   style?: CSSProperties
-}
+interface CardProps extends PropsWithChildren<HTMLAttributes<HTMLDivElement>> {}
 
-export const Card = ({ children, style, className }: CardProps) => {
+export const Card = ({ children, className, ...props }: CardProps) => {
    return (
-      <div className={`card${className ? ' ' + className : ''}`} style={style}>
+      <div className={`card${className ? ' ' + className : ''}`} {...props}>
          {children}
       </div>
    )

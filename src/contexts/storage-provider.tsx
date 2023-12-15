@@ -12,6 +12,7 @@ import {
 
 interface StorageContextProps {
    isLoading: boolean
+   isUploading: boolean
    storageDetails: Partial<StorageDetails>
    fileRecords: FileRecord[]
    loadNextRecords: () => Promise<void>
@@ -34,6 +35,7 @@ export const useStorage = () => {
 export const StorageProvider = ({ children }: PropsWithChildren) => {
    const { getAccessTokenSilently, isAuthenticated } = useAuth0()
    const [isLoading, setIsLoading] = useState<boolean>(true)
+   const [isUploading, setIsUploading] = useState<boolean>(false)
    const [token, setToken] = useState<string>()
    const [storageDetails, setStorageDetails] = useState<Partial<StorageDetails>>({})
    const [fileRecords, setFileRecords] = useState<FileRecord[]>([])
@@ -80,6 +82,8 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
          throw Error('Cannot upload file. Client is not authenticated!')
       }
 
+      setIsUploading(true)
+
       const presignedURL = await fetchPresignedPostURL(token)
 
       const formData = new FormData()
@@ -102,7 +106,9 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
          size: file.size,
       }
 
-      setFileRecords(prev => [...prev, dummyRecord])
+      setIsUploading(false)
+
+      setFileRecords(prev => [dummyRecord, ...prev])
    }
 
    const loadNextRecords = async () => {
@@ -120,6 +126,7 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
 
    const contextValue: StorageContextProps = {
       isLoading,
+      isUploading,
       storageDetails,
       fileRecords,
       loadNextRecords,
