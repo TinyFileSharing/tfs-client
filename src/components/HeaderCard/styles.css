@@ -1,10 +1,12 @@
 .header-card {
    display: grid;
    grid-template-columns: 1fr 1fr;
+   width: 100%;
+   justify-content: space-between;
 }
 
-.header-card > * {
-   width: fit-content;
+.header-card > *:nth-child(1 + n) {
+   grid-column: 2;
 }
 
 .profile-name {
@@ -45,5 +47,5 @@
 }
 
 .storage-tier {
-    margin-top: 16px;
+   margin-top: 16px;
 }
