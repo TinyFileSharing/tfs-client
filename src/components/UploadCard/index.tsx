@@ -6,8 +6,8 @@ import { useState, useRef, useEffect } from 'react'
 export const UploadCard = () => {
    const { storageDetails, uploadFile, isUploading } = useStorage()
    const [selectedFile, setSelectedFile] = useState<File | undefined>()
-   const [isDragging, setIsDragging] = useState<boolean>(false)
-   const fileInputRef = useRef<HTMLInputElement>(null) // Create a ref for the file input
+   // const [isDragging, setIsDragging] = useState<boolean>(false)
+   const fileInputRef = useRef<HTMLInputElement>(null)
 
    useEffect(() => {
       if (selectedFile) {

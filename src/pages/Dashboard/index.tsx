@@ -34,8 +34,6 @@ export const Dashboard = () => {
                         ))}
 
                         {/* <input type='button' value='Load next' onClick={loadNextRecords} /> */}
-
-                        <Card>Footer</Card>
                      </div>
                   ) : (
                      <Card>Loading...</Card>

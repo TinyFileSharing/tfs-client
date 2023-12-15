@@ -106,6 +106,8 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
          size: file.size,
       }
 
+      // TODO - update storage details on upload
+      
       setIsUploading(false)
 
       setFileRecords(prev => [dummyRecord, ...prev])
