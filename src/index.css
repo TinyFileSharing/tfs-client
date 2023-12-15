@@ -18,7 +18,7 @@ body {
 
 main {
    width: 470px;
-   margin: 140px auto;
+   margin: 50px auto;
    padding: 16px;
 }
 
@@ -31,14 +31,35 @@ main {
 
 input {
    font-family: inherit;
-}
-
-.bare-bone-input {
    border: none;
    padding: 7px;
-   font-size: 15px;
-   font-family: inherit;
-   font-weight: 500;
    cursor: pointer;
    color: black;
+}
+
+.medium-alt {
+   font-size: 15px;
+   font-weight: 500;
+}
+
+.medium {
+   font-size: 15px;
+   font-weight: 500;
+   opacity: 0.5;
+}
+
+.bold {
+   font-size: 20px;
+   font-weight: 500;
+}
+
+.regular {
+   font-size: 15px;
+   font-weight: 400;
+}
+
+.regular-alt {
+   font-size: 15px;
+   font-weight: 400;
+   opacity: 0.5;
 }

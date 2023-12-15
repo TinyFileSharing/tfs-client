@@ -17,16 +17,16 @@ export const HeaderCard = () => {
    return (
       <Card className='header-card'>
          <div className='header-name-group'>
-            <div className='profile-name'>{user?.name}</div>
+            <div className='bold'>{user?.name}</div>
             <LogoutButton />
          </div>
          <div className='header-storage-group'>
             <span>
-               <span className='used-storage'>{usedMB}</span>
-               <span className='total-storage'> of {totalMB} MB used</span>
+               <span className='bold'>{usedMB}</span>
+               <span className='regular-alt'> of {totalMB} MB used</span>
             </span>
             <ProgressBar percentage={storageDetails.storageUsedPercentage!} />
-            <div className='storage-file-count'>
+            <div className='storage-file-count regular-alt'>
                <CloudQueueIcon style={{ fontSize: 20 }} />
                <span>{storageDetails.fileCount} files saved</span>
             </div>

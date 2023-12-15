@@ -1,0 +1,17 @@
+.upload-card {
+   outline: 5px solid white;
+   outline-offset: -10px;
+}
+
+.drag-drop {
+   font-size: 20px;
+   font-weight: 500;
+}
+
+.browse {
+   color: var(--accent-color);
+}
+
+.max-upload {
+   opacity: 0.5;
+}

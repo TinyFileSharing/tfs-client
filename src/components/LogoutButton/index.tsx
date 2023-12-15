@@ -11,7 +11,7 @@ export const LogoutButton = () => {
 
    return (
       <div className='logout-btn'>
-         <input type='button' className='bare-bone-input' value='Logout' onClick={handleLogout} />
+         <input type='button' className='medium-alt' value='Logout' onClick={handleLogout} />
          <LogoutIcon style={{ fontSize: 20 }} />
       </div>
    )

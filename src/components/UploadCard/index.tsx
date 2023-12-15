@@ -22,17 +22,20 @@ export const UploadCard = () => {
    const handleUpload = async () => {
       if (selectedFile) {
          await uploadFile(selectedFile)
-            .then(() => console.log('File uploaded successfully!'))
-            .catch(error => console.error('Error uploading file:', error))
          setSelectedFile(undefined)
       }
    }
 
    return (
-      <Card>
+      <Card className='upload-card'>
+         <div className='upload-label'>
+            <span className='drag-drop'>
+               Drag and drop files or <span className='browse'>browse</span>
+            </span>
+            <span className='max-upload'>Max file size {storageDetails?.maxUploadSize} MB</span>
+         </div>
          <input type='button' value='Upload file' onClick={handleUpload} />
          <input type='file' onChange={handleSelect} />
-         <div className='max-file-upload'>Max file size {storageDetails?.maxUploadSize} MB</div>
       </Card>
    )
 }
