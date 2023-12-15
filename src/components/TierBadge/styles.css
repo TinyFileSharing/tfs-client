@@ -1,4 +1,10 @@
 .tier-badge {
+   display: flex;
+   align-items: center;
+   gap: 16px;
+}
+
+.tier-label {
    width: fit-content;
    height: fit-content;
    font-family: 'Lato', sans-serif;
@@ -7,6 +13,7 @@
    font-style: italic;
    color: white;
    border-radius: 6px;
+   white-space: nowrap;
 }
 
 .pro {
@@ -17,4 +24,14 @@
 .freemium {
    background-color: #c9c9c9;
    padding: 3px 7px 3px 6px;
+}
+
+.upgrade-tier-prompt {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   color: var(--cta);
+   font-size: 15px;
+   font-weight: 500;
+   white-space: nowrap;
 }
