@@ -3,7 +3,10 @@
 	"version": "0.0.1",
 	"private": true,
 	"dependencies": {
+		"@emotion/react": "^11.11.1",
+		"@emotion/styled": "^11.11.0",
 		"@mui/icons-material": "^5.15.0",
+		"@mui/material": "^5.15.0",
 		"axios": "^1.6.2",
 		"js-file-download": "^0.4.12",
 		"moment": "^2.29.4",
