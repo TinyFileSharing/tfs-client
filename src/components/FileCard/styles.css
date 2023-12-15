@@ -11,6 +11,16 @@
    align-items: center;
 }
 
+.filename {
+   display: flex;
+   gap: 8px;
+   align-items: center;
+}
+
+.filename img {
+   height: 24px;
+}
+
 .file-btns {
    display: flex;
    flex-direction: row-reverse;
