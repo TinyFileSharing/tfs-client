@@ -5,20 +5,32 @@ import { LogoutButton } from '../LogoutButton'
 import { Card } from '../../components/Card'
 import { ProgressBar } from '../../components/ProgressBar'
 import { TierBadge } from '../../components/TierBadge'
+import CloudQueueIcon from '@mui/icons-material/CloudQueue'
 
 export const HeaderCard = () => {
    const { user } = useAuth0()
    const { storageDetails } = useStorage()
 
+   const usedMB = Math.round(storageDetails.storageUsed! / 100)
+   const totalMB = Math.round(storageDetails.storageCapacity! / 100)
+
    return (
-      <Card>
-         <div className='profile-name'>{user?.name}</div>
-         <LogoutButton />
-         <div className='storage-capacity'>
-            {storageDetails.storageUsed} of {storageDetails.storageCapacity}
+      <Card className='header-card'>
+         <div className='header-name-group'>
+            <div className='profile-name'>{user?.name}</div>
+            <LogoutButton />
          </div>
-         <ProgressBar percentage={storageDetails.storageUsedPercentage!} />
-         <div className='storage-file-count'>{storageDetails.fileCount} files</div>
+         <div className='header-storage-group'>
+            <span>
+               <span className='used-storage'>{usedMB}</span>
+               <span className='total-storage'> of {totalMB} MB used</span>
+            </span>
+            <ProgressBar percentage={storageDetails.storageUsedPercentage!} />
+            <div className='storage-file-count'>
+               <CloudQueueIcon style={{ fontSize: 20 }} />
+               <span>{storageDetails.fileCount} files saved</span>
+            </div>
+         </div>
          <div className='storage-tier'>
             <TierBadge label={storageDetails.tierLabel!} />
          </div>

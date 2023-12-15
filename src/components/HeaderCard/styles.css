@@ -1,4 +1,49 @@
+.header-card {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}
+
+.header-card > * {
+   width: fit-content;
+}
+
 .profile-name {
-    font-size: 20px;
-    font-weight: 500;
+   font-size: 20px;
+   font-weight: 500;
+}
+
+.used-storage {
+   font-size: 20px;
+   font-weight: 500;
+}
+
+.total-storage {
+   font-size: 15px;
+   opacity: 0.5;
+}
+
+.storage-file-count {
+   display: flex;
+   gap: 8px;
+   align-items: center;
+   font-size: 15px;
+   opacity: 0.5;
+   flex-wrap: nowrap;
+}
+
+.header-name-group {
+   display: flex;
+   flex-direction: column;
+   gap: 8px;
+}
+
+.header-storage-group {
+   display: flex;
+   flex-direction: column;
+   align-items: end;
+   gap: 8px;
+}
+
+.storage-tier {
+    margin-top: 16px;
 }
