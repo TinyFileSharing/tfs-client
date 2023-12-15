@@ -16,13 +16,11 @@ interface FileCardProps {
 export const FileCard = ({ file }: FileCardProps) => {
    const { downloadFile, deleteFile, shareFile } = useStorage()
 
-   const icon = filenameToSvgIcon(file.name)
-
    return (
       <Card className='file-card'>
          <div className='row'>
             <div className='filename'>
-               <img src={icon} />
+               <img src={filenameToSvgIcon(file.name)} />
                <div className='bold'>{shortenString(file.name, 20, 'end')}</div>
             </div>
             <div className='file-btns'>
