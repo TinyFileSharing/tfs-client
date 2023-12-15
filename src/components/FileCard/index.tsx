@@ -2,6 +2,11 @@ import './styles.css'
 import { useStorage } from '../../contexts/storage-provider'
 import { toReadableSize } from '../../utils/files'
 import { Card } from '../Card'
+import { shortenString } from '../../utils/strings'
+import { toReadableTime } from '../../utils/time'
+import DownloadIcon from '@mui/icons-material/Download'
+import IosShareIcon from '@mui/icons-material/IosShare'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline'
 
 interface FileCardProps {
    file: FileRecord
@@ -11,14 +16,27 @@ export const FileCard = ({ file }: FileCardProps) => {
    const { downloadFile, deleteFile, shareFile } = useStorage()
 
    return (
-      <Card>
-         <div className='file-name bold'>{file.name}</div>
-         <div className='file-size'>{toReadableSize(file.size)}</div>
-         <div className='file-creation'>{file.createdAt.toString()}</div>
-         <div className='file-expiration'>{file.expirationAt.toString()}</div>
-         <input type='button' value='Share' onClick={() => shareFile(file.id)} />
-         <input type='button' value='Download' onClick={() => downloadFile(file.id)} />
-         <input type='button' value='Delete' onClick={() => deleteFile(file.id)} />
+      <Card className='file-card'>
+         <div className='row'>
+            <div className='bold'>{shortenString(file.name, 20, 'end')}</div>
+            <div className='file-btns'>
+               <div className='btn primary' onClick={() => downloadFile(file.id)}>
+                  <DownloadIcon />
+               </div>
+               <div className='btn' onClick={() => deleteFile(file.id)}>
+                  <DeleteOutlineIcon />
+               </div>
+               <div className='btn' onClick={() => shareFile(file.id)}>
+                  <IosShareIcon />
+               </div>
+            </div>
+         </div>
+         <div className='row'>
+            <div className='medium'>
+               {toReadableSize(file.size)} • {toReadableTime(file.createdAt)}
+            </div>
+            <div className='medium'>Expires {toReadableTime(file.expirationAt)}</div>
+         </div>
       </Card>
    )
 }

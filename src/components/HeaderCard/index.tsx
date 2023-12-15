@@ -29,7 +29,9 @@ export const HeaderCard = () => {
             <ProgressBar percentage={storageDetails.storageUsedPercentage!} />
             <div className='storage-file-count regular-alt'>
                <CloudQueueIcon style={{ fontSize: 20 }} />
-               <span>{storageDetails.fileCount} files stored</span>
+               <span>
+                  {storageDetails.fileCount} {storageDetails.fileCount! > 1 ? 'files' : 'file'} stored
+               </span>
             </div>
          </div>
          <div className='storage-tier'>
