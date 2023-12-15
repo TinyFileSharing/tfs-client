@@ -28,3 +28,17 @@ main {
       margin: auto;
    }
 }
+
+input {
+   font-family: inherit;
+}
+
+.bare-bone-input {
+   border: none;
+   padding: 7px;
+   font-size: 15px;
+   font-family: inherit;
+   font-weight: 500;
+   cursor: pointer;
+   color: black;
+}

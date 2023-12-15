@@ -1,7 +1,7 @@
 import './styles.css'
 import { useAuth0 } from '@auth0/auth0-react'
 import { useStorage } from '../../contexts/storage-provider'
-import { LogoutButton } from '../../components/LogoutButton'
+import { LogoutButton } from '../LogoutButton'
 import { Card } from '../../components/Card'
 import { ProgressBar } from '../../components/ProgressBar'
 import { TierBadge } from '../../components/TierBadge'
@@ -12,7 +12,7 @@ export const HeaderCard = () => {
 
    return (
       <Card>
-         {user?.name}
+         <div className='profile-name'>{user?.name}</div>
          <LogoutButton />
          <div className='storage-capacity'>
             {storageDetails.storageUsed} of {storageDetails.storageCapacity}

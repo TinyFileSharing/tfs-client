@@ -13,8 +13,6 @@ export const Dashboard = () => {
    const { isLoading: isAuthLoading } = useAuth0()
    const { isLoading, fileRecords, loadNextRecords } = useStorage()
 
-   console.log(isAuthLoading)
-
    return (
       <main>
          {!isAuthLoading ? (

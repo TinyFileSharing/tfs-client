@@ -1,0 +1,11 @@
+.logout-btn {
+   display: flex;
+   align-items: center;
+   gap: 8px;
+   opacity: 0.5;
+}
+
+.logout-btn input {
+   background-color: transparent;
+   padding: 0;
+}
