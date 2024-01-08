@@ -41,3 +41,9 @@ interface PresignedGetURL {
    expirationDate: string
    issueDate: string
 }
+
+interface ShortenedURL {
+   shortUrl: string
+   expiration: string
+   lifespan: string
+}

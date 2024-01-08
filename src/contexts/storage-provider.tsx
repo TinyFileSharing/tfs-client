@@ -8,18 +8,19 @@ import {
    fetchPresignedGetURL,
    fetchPresignedPostURL,
    fetchRecords,
+   shortenUrl,
 } from '../api/storage'
 
 interface StorageContextProps {
    isLoading: boolean
-   isUploading: boolean
+isUploading: boolean
    storageDetails: Partial<StorageDetails>
    fileRecords: FileRecord[]
    loadNextRecords: () => Promise<void>
    deleteFile: (fileId: string) => Promise<void>
    downloadFile: (fileId: string) => Promise<void>
    uploadFile: (file: File) => Promise<void>
-   shareFile: (fileId: string) => Promise<void>
+   shareFile: (fileId: string) => Promise<string>
 }
 
 const StorageContext = createContext<StorageContextProps | undefined>(undefined)
@@ -35,7 +36,7 @@ export const useStorage = () => {
 export const StorageProvider = ({ children }: PropsWithChildren) => {
    const { getAccessTokenSilently, isAuthenticated } = useAuth0()
    const [isLoading, setIsLoading] = useState<boolean>(true)
-   const [isUploading, setIsUploading] = useState<boolean>(false)
+const [isUploading, setIsUploading] = useState<boolean>(false)
    const [token, setToken] = useState<string>()
    const [storageDetails, setStorageDetails] = useState<Partial<StorageDetails>>({})
    const [fileRecords, setFileRecords] = useState<FileRecord[]>([])
@@ -122,8 +123,14 @@ export const StorageProvider = ({ children }: PropsWithChildren) => {
       setNextPageIndex(prev => prev + 1)
    }
 
-   const shareFile = async (fileId: string) => {
-      // TODO - implement sharing
+   const shareFile = async (fileId: string): Promise<string> => {
+      if (!token) {
+         throw Error('Cannot share file. Client is not authenticated!')
+      }
+
+      const presignedURL = await fetchPresignedGetURL(token, fileId)
+      const url = await shortenUrl(presignedURL.url)
+      return url.shortUrl
    }
 
    const contextValue: StorageContextProps = {

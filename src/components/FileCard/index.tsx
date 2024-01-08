@@ -16,6 +16,11 @@ interface FileCardProps {
 export const FileCard = ({ file }: FileCardProps) => {
    const { downloadFile, deleteFile, shareFile } = useStorage()
 
+   const handleShareFile = async () => {
+      const url = await shareFile(file.id)
+      await navigator.clipboard.writeText(url)
+   }
+
    return (
       <Card className='file-card'>
          <div className='row'>
@@ -30,7 +35,7 @@ export const FileCard = ({ file }: FileCardProps) => {
                <div className='btn' onClick={() => deleteFile(file.id)}>
                   <DeleteOutlineIcon />
                </div>
-               <div className='btn' onClick={() => shareFile(file.id)}>
+               <div className='btn' onClick={handleShareFile}>
                   <IosShareIcon />
                </div>
             </div>
